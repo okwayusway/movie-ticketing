@@ -1,0 +1,18 @@
+<div class="container-fluid dashboard">
+      <div class="row movies-wrapper">
+        <ng-container *ngFor="let movie of _movieList | async as list; trackBy:movie.id; index as i">
+          <div class="col col-md-3">
+            <div class="card card-wrapper">
+              <img [src]="getImage(movie.poster_path)" class="card-img-top img-center">
+              <div class="card-body">
+                <h6 class="card-title">{{movie.title}}</h6>
+                <span>Rating: </span><span>{{movie.vote_average}}</span>
+              </div>
+              <div class="card-footer">
+                <button type="button" (click)="setMovieDetails(movie.id, i, movie.title)" class="btn btn-outline">Buy Ticket</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+</div>

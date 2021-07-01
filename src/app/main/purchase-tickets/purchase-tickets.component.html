@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title>Purchase Ticket</mat-card-title>
+  <mat-card-content>
+    <div class="row mb-3">
+      <div class="col col-md-8">
+        <span>Schedule: </span>
+        <input [ngModel]="schedule | date:'yyyy-MM-dd'" type="date" #ctrl="ngModel" required (ngModelChange)="onScheduleChange($event)">
+      </div>
+      <div class="col col-md-4">
+        <span>{{movieTime}}</span>
+      </div>
+    </div>
+    <ng-container *ngFor="let seat of seats">
+      <div class="seat-wrapper position-relative">
+        <span>{{seat.seatNumber}}</span>
+        <fa-icon (click)="onSelected(seat.seatNumber)" [icon]="faCouch" size="lg" class="icons" [ngClass]="{'occupied': seat.status, 'selected':check(seat.seatNumber)}">
+        </fa-icon> 
+    </div>
+    </ng-container>
+  </mat-card-content>
+  <mat-card-footer>
+    <div class="row">
+      <div class="col col-sm-4 d-flex justify-content-center align-items-center">
+        <h6>₱ {{total}}.00</h6>
+      </div>
+      <div class="col col-sm-8 d-flex justify-content-end align-items-center">
+        <button type="button" class="btn btn-secondary m-1"  (click)="reset()">Close</button>
+        <button type="button" class="btn btn-primary m-1" (click)="buy()">Buy</button>
+      </div>
+    </div>
+  </mat-card-footer>
+</mat-card>
